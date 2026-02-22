@@ -1,15 +1,15 @@
 import AnimatedSection from "./AnimatedSection";
 
 const AboutSection = () => (
-  <section id="about" className="py-24 md:py-36 bg-card">
+  <section id="about" className="py-28 md:py-40 bg-card">
     <div className="container">
       <AnimatedSection>
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
           <div>
-            <h2 className="text-section font-heading text-foreground mb-6">
+            <h2 className="text-section font-heading text-foreground mb-8">
               A neighbourhood gym built for busy weeks
             </h2>
-            <p className="text-body-lg text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-body-lg text-muted-foreground mb-5 leading-relaxed">
               IronForge Fitness opened in 2018 with a simple idea: give working professionals in
               Indiranagar a gym that respects their time and energy.
             </p>
@@ -19,13 +19,13 @@ const AboutSection = () => (
             </p>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-xl md:text-2xl font-light text-foreground leading-relaxed mb-8">
+            <p className="text-xl md:text-2xl font-light text-foreground leading-relaxed mb-10">
               "No sales pressure, no noise. Just a well-run gym, good equipment and coaches who notice
               when you're ready for a little more weight on the bar."
             </p>
-            <div className="flex gap-6 text-sm text-muted-foreground">
+            <div className="flex gap-8 text-sm text-muted-foreground font-medium">
               <span>Since 2018</span>
-              <span>Indiranagar • Bangalore</span>
+              <span>Indiranagar · Bangalore</span>
             </div>
           </div>
         </div>
