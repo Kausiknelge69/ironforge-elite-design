@@ -18,9 +18,9 @@ export default {
         body: ["Inter", "system-ui", "sans-serif"],
       },
       fontSize: {
-        "hero": ["clamp(3rem, 6vw, 5rem)", { lineHeight: "1.05", letterSpacing: "-0.02em", fontWeight: "700" }],
-        "section": ["clamp(2rem, 4vw, 3rem)", { lineHeight: "1.15", letterSpacing: "-0.02em", fontWeight: "700" }],
-        "body-lg": ["1.125rem", { lineHeight: "1.7" }],
+        "hero": ["clamp(3rem, 7vw, 5.5rem)", { lineHeight: "1.02", letterSpacing: "-0.03em", fontWeight: "800" }],
+        "section": ["clamp(2rem, 4vw, 3rem)", { lineHeight: "1.12", letterSpacing: "-0.025em", fontWeight: "700" }],
+        "body-lg": ["1.125rem", { lineHeight: "1.75" }],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -66,6 +66,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      boxShadow: {
+        "card": "var(--shadow-card)",
+        "card-hover": "var(--shadow-card-hover)",
+        "elevated": "var(--shadow-elevated)",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
 
@@ -23,43 +23,62 @@ const testimonials = [
 const TestimonialsSection = () => {
   const [active, setActive] = useState(0);
 
+  const next = useCallback(() => {
+    setActive((prev) => (prev + 1) % testimonials.length);
+  }, []);
+
+  // Auto-scroll every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [next]);
+
   return (
-    <section className="py-24 md:py-36 bg-card">
+    <section className="py-28 md:py-40 bg-card">
       <div className="container">
-        <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
+        <AnimatedSection className="text-center max-w-2xl mx-auto mb-20">
           <h2 className="text-section font-heading text-foreground mb-4">
             Members who show up, week after week
           </h2>
         </AnimatedSection>
 
-        <AnimatedSection className="max-w-2xl mx-auto text-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.4 }}
-            >
-              <p className="text-xl md:text-2xl text-foreground font-light leading-relaxed mb-8">
-                "{testimonials[active].text}"
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {testimonials[active].name} • {testimonials[active].role}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+        <AnimatedSection className="max-w-3xl mx-auto text-center">
+          <div className="min-h-[180px] flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              >
+                <p className="text-xl md:text-[26px] text-foreground font-light leading-relaxed mb-10 text-balance">
+                  "{testimonials[active].text}"
+                </p>
+                <p className="text-sm text-muted-foreground font-medium">
+                  {testimonials[active].name} · {testimonials[active].role}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          <div className="flex justify-center gap-2 mt-10">
+          {/* Progress dots */}
+          <div className="flex justify-center gap-2.5 mt-12">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  i === active ? "bg-primary w-6" : "bg-muted-foreground/30"
-                }`}
+                className="relative w-2 h-2 rounded-full bg-muted-foreground/20 overflow-hidden"
                 aria-label={`Show testimonial ${i + 1}`}
-              />
+              >
+                {i === active && (
+                  <motion.span
+                    layoutId="testimonial-dot"
+                    className="absolute inset-0 rounded-full bg-primary"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </button>
             ))}
           </div>
         </AnimatedSection>

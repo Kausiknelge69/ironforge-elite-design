@@ -10,16 +10,16 @@ const schedule = [
 const typeColors: Record<string, string> = {
   Strength: "bg-primary/10 text-primary",
   HIIT: "bg-red-500/10 text-red-500",
-  Yoga: "bg-emerald-500/10 text-emerald-600",
+  Yoga: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
   Zumba: "bg-pink-500/10 text-pink-500",
   "Cardio Blast": "bg-blue-500/10 text-blue-500",
 };
 
 const ScheduleSection = () => (
-  <section id="classes" className="py-24 md:py-36">
+  <section id="classes" className="py-28 md:py-40">
     <div className="container">
-      <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
-        <h2 className="text-section font-heading text-foreground mb-4">
+      <AnimatedSection className="text-center max-w-2xl mx-auto mb-20">
+        <h2 className="text-section font-heading text-foreground mb-5">
           Programs and weekly schedule
         </h2>
         <p className="text-body-lg text-muted-foreground">
@@ -28,31 +28,31 @@ const ScheduleSection = () => (
       </AnimatedSection>
 
       <AnimatedSection>
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
+        <div className="flex flex-wrap gap-2 justify-center mb-10">
           {Object.entries(typeColors).map(([name, cls]) => (
-            <span key={name} className={`px-3 py-1 rounded-full text-xs font-medium ${cls}`}>
+            <span key={name} className={`px-3.5 py-1.5 rounded-full text-xs font-semibold ${cls}`}>
               {name}
             </span>
           ))}
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-border">
-          <table className="w-full min-w-[600px]">
+        <div className="overflow-x-auto rounded-2xl border border-border shadow-card">
+          <table className="w-full min-w-[640px]">
             <thead>
-              <tr className="border-b border-border">
-                <th className="text-left text-xs font-medium text-muted-foreground p-4">Time</th>
+              <tr className="border-b border-border bg-muted/50">
+                <th className="text-left text-[11px] font-semibold text-muted-foreground p-4 uppercase tracking-wider">Time</th>
                 {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map(d => (
-                  <th key={d} className="text-left text-xs font-medium text-muted-foreground p-4">{d}</th>
+                  <th key={d} className="text-left text-[11px] font-semibold text-muted-foreground p-4 uppercase tracking-wider">{d}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {schedule.map((row) => (
-                <tr key={row.time} className="border-b border-border last:border-0">
-                  <td className="p-4 text-sm font-medium text-foreground whitespace-nowrap">{row.time}</td>
+                <tr key={row.time} className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors">
+                  <td className="p-4 text-sm font-semibold text-foreground whitespace-nowrap">{row.time}</td>
                   {[row.mon, row.tue, row.wed, row.thu, row.fri, row.sat].map((cls, i) => (
                     <td key={i} className="p-4">
-                      <span className={`inline-block px-2.5 py-1 rounded-md text-xs font-medium ${typeColors[cls] || ""}`}>
+                      <span className={`inline-block px-3 py-1.5 rounded-lg text-xs font-semibold ${typeColors[cls] || ""}`}>
                         {cls}
                       </span>
                     </td>
